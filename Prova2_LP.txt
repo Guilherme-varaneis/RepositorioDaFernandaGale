@@ -1,0 +1,40 @@
+CREATE TABLE pacientes(
+	id_pac serial,
+    	nome_pac character varying(50),
+    	idade_pac character varying(50),
+   	cpf_pac character varying(30),
+    	altura_pac character varying(30),
+   	peso_pac character varying(2),
+        sexo_pac character varying(9),
+	
+    CONSTRAINT paciente_pkey PRIMARY KEY (id_pac),
+    CONSTRAINT paciente_cpf_key UNIQUE (cpf_pac)
+)
+
+CREATE TABLE consulta(
+	id_cons serial,
+	numero_cons integer,
+	local_cons character varying(50),
+	hora_cons character varying(4)
+	CONSTRAINT consulta_pkey PRIMARY KEY (id_cons)
+)
+
+CREATE TABLE medico(
+	id_med serial,
+	nome_med character varying(50),
+	crm_med integer,
+	especi_med character varying(30),
+	via_med character varying(4),
+	CONSTRAINT medico_pkey PRIMARY KEY (id_med)
+)
+
+CREATE TABLE exame
+(
+    id_exame serial,
+    dat_exame date,
+    hora_exame character varying (5) 
+    id_paci integer,
+    descricao_exame character varying (30) 	 
+    CONSTRAINT exame_pkey PRIMARY KEY (id_exame),
+    CONSTRAINT exame_id_paci_fkey FOREIGN KEY (id_pac) REFERENCES pacientes (id_pac)
+)
